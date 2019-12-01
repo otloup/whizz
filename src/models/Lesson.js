@@ -1,4 +1,5 @@
 const Model = require('./Model');
+const {join} = require('ramda');
 
 class Lesson extends Model {
 
@@ -12,7 +13,17 @@ class Lesson extends Model {
 
     this.code = code;
     this.level = level;
+  }
 
+  toCreateParams() {
+    return {
+      code: this.code,
+      level: this.level
+    };
+  }
+
+  get reference() {
+    return join('.', [this.code, this.level]);
   }
 
 }
