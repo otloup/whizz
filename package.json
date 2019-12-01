@@ -9,8 +9,7 @@
   "devDependencies": {
     "jest": "^24.9.0",
     "mkdirp": "^0.5.1",
-    "rimraf": "^3.0.0",
-    "ulog": "^1.1.0"
+    "rimraf": "^3.0.0"
   },
   "scripts": {
     "prebuild": "mkdirp dist && rimraf dist/whizz-recruitment-task.zip",
