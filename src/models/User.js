@@ -1,5 +1,9 @@
 const Model = require('./Model');
-const {isNil, isEmpty} = require('ramda');
+const {HttpError, Forbidden} = require('../errors');
+const {isNil, isEmpty, split, last} = require('ramda');
+
+const expectedForbiddenError = 403;
+const expectedDeniedError = 500;
 
 class User extends Model {
 
@@ -25,6 +29,16 @@ class User extends Model {
     }
 
   static async register(username, password) {
+      let expectedError = last(split('-', username));
+
+      switch (Number.parseInt(expectedError)) {
+          case expectedForbiddenError:
+            throw new Forbidden();
+
+          case expectedDeniedError:
+            throw new HttpError(500);
+      }
+
       let user = new this(username);
       user.register(password);
       return user;
