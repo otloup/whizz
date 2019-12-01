@@ -13,7 +13,16 @@ class User extends Model {
       this.username = username;
   }
 
-  register(password) {
+  toCreateParams(password) {
+      return Object.assign(
+          {
+              username: this.username
+          },
+          password ? {password} : null
+      );
+  }
+
+    register(password) {
     let user = new User();
     return user.create(password);
   }
