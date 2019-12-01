@@ -14,9 +14,13 @@ class User extends Model {
   }
 
   register(password) {
-    return this.create(password);
+    let user = new User();
+    return user.create(password);
   }
 
+  static register(password) {
+      self.register(password)
+  }
 }
 
 module.exports = User;
