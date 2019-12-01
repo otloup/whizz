@@ -1,13 +1,16 @@
 const Model = require('./Model');
+const {isNil, isEmpty} = require('ramda');
 
 class User extends Model {
 
   constructor(username) {
+      super();
 
-    super();
+      if (isNil(username) || isEmpty(username)) {
+        throw new Error('Missing required constructor parameters');
+      }
 
-    this.username = username;
-
+      this.username = username;
   }
 
   register(password) {
