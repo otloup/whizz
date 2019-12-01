@@ -1,5 +1,5 @@
 const Model = require('./Model');
-const {join} = require('ramda');
+const {join, isNil} = require('ramda');
 
 class Lesson extends Model {
 
@@ -7,7 +7,7 @@ class Lesson extends Model {
 
     super();
 
-    if (undefined === code || undefined === level) {
+    if (isNil(code) || isNil(level)) {
       throw new Error('Missing required constructor parameters');
     }
 
